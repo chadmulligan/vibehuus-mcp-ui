@@ -20,8 +20,6 @@
 - Runtime: Node 20+, TypeScript
 - MCP: `@modelcontextprotocol/ext-apps`, `@modelcontextprotocol/sdk`
 - UI: React 19, Vite, `vite-plugin-singlefile` (single-file HTML bundle)
-- AI: Gemini 3 Flash Preview via `@google/genai` for transcription + structured summary
-- Local models: Ollama via `fetch` on `http://localhost:11434`
 - Tests: vitest
 
 ## UI (MCP App)
@@ -36,7 +34,7 @@
 - The MCP server is the backend. No separate FastAPI/HTTP API.
 - `server.ts` registers tools and resources with `registerAppTool` and `registerAppResource` (positional signatures)
 - `main.ts` wires transports: stdio (for Claude Desktop) and Streamable HTTP (for `basic-host` testing)
-- All I/O is async/await (Gemini SDK, Ollama fetches, file reads)
+- All I/O is async/await (network fetches, file reads)
 - Hide UI-driven helper tools from the model with `_meta: { ui: { visibility: ["app"] } }`
 - Always include a `content: [{ type: "text", text: ... }]` text fallback alongside `structuredContent`
 
